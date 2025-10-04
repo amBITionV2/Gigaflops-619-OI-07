@@ -26,6 +26,7 @@ body {
     background-attachment: fixed;
     color: var(--primary-text-color);
     line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll from particles */
 }
 
 /* --- Layout & Sections --- */
@@ -36,7 +37,7 @@ body {
 }
 
 main, section {
-    padding: 60px 0;
+    padding: 40px 0; /* Reduced vertical padding from 60px to 40px */
 }
 
 /* --- Navigation (Glassmorphism) --- */
@@ -45,7 +46,7 @@ nav {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--glass-border-color);
-    padding: 0px 0;
+    padding: 10px 0; /* Adjusted padding for a larger logo */
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -59,17 +60,17 @@ nav .container {
 
 /* Updated styles for the image logo */
 nav .logo {
-    display: block; /* Ensures proper layout for the link */
+    display: block;
     transition: transform 0.3s ease;
 }
 
 nav .logo:hover {
-    transform: scale(1.05); /* Slight zoom on logo hover */
+    transform: scale(1.05);
 }
 
 nav .logo img {
-    height: 150px; /* Controls the height of the logo */
-    vertical-align: middle; /* Aligns image vertically with nav links */
+    height: 90px; /* Increased logo height */
+    vertical-align: middle;
 }
 
 nav ul {
@@ -83,13 +84,13 @@ nav ul li a {
     text-decoration: none;
     font-size: 1rem;
     font-weight: 500;
-    transition: color 0.3s ease, transform 0.3s ease; /* Added transform to transition */
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 nav ul li a:hover,
 nav ul li a.active {
     color: var(--primary-text-color);
-    transform: translateY(-2px); /* Subtle lift on hover */
+    transform: translateY(-2px);
 }
 
 /* --- Typography --- */
@@ -146,7 +147,6 @@ form button {
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    /* Animated Gradient Background */
     background: linear-gradient(135deg, var(--accent-color), var(--secondary-text-color));
     background-size: 200% 200%;
     transition: background-position 0.5s ease, transform 0.2s ease;
@@ -154,8 +154,8 @@ form button {
 
 .cta-button:hover,
 form button:hover {
-    background-position: 100% 100%; /* Shift gradient on hover */
-    transform: scale(1.05); /* Slightly enlarge button */
+    background-position: 100% 100%;
+    transform: scale(1.05);
 }
 
 .form-group {
@@ -186,7 +186,7 @@ select, textarea {
 select:focus, textarea:focus {
     outline: none;
     border-color: var(--accent-color);
-    box-shadow: 0 0 15px var(--glow-color); /* Add glow on focus */
+    box-shadow: 0 0 15px var(--glow-color);
 }
 
 /* --- Cards & Grids (Glassmorphism) --- */
@@ -205,14 +205,13 @@ select:focus, textarea:focus {
     border-radius: 12px;
     border: 1px solid var(--glass-border-color);
     box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-    /* Added transition for hover effect */
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .step:hover, .skill-card:hover {
-    transform: translateY(-8px); /* Lift the card */
-    box-shadow: 0 8px 30px var(--glow-color); /* Add a subtle glow */
-    background-color: rgba(11, 50, 56, 0.7); /* Slightly lighten on hover */
+    transform: translateY(-8px);
+    box-shadow: 0 8px 30px var(--glow-color);
+    background-color: rgba(11, 50, 56, 0.7);
 }
 
 .skill-card ul {
@@ -248,7 +247,7 @@ footer p {
     font-size: 0.9rem;
 }
 
-/* --- Roadmap Output Styles (Glassmorphism) --- */
+/* --- Roadmap Output Styles --- */
 #roadmap-output {
     margin-top: 40px;
     background-color: var(--glass-bg-color);
@@ -260,7 +259,7 @@ footer p {
     display: none;
 }
 
-.roadmap-result h3 {
+#roadmap-text-content h3 {
     font-size: 1.5rem;
     color: var(--primary-text-color);
     border-bottom: 2px solid var(--border-color);
@@ -269,33 +268,24 @@ footer p {
     margin-bottom: 20px;
 }
 
-.roadmap-result h3:first-child {
+#roadmap-text-content h3:first-child {
     margin-top: 0;
 }
 
-.roadmap-result ul {
+#roadmap-text-content ul {
     list-style: none;
     padding-left: 5px;
     margin-bottom: 20px;
 }
 
-.roadmap-result li {
+#roadmap-text-content li {
     color: var(--secondary-text-color);
     margin-bottom: 10px;
-    padding-left: 20px;
-    position: relative;
+    line-height: 1.5;
 }
 
-.roadmap-result li::before {
-    content: '→';
-    color: var(--accent-color);
-    position: absolute;
-    left: 0;
-    font-weight: bold;
-}
-
-.roadmap-result p {
-    color: var(--secondary-text-color);
+#flowchart-container {
+    margin-top: 40px;
 }
 
 .loading-message, .error-message {
@@ -306,6 +296,54 @@ footer p {
 
 .error-message {
     color: #ff8c8c;
+}
+
+/* --- Flowchart Styles --- */
+.mermaid {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.mermaid text {
+    fill: var(--primary-text-color) !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+.mermaid .label {
+    color: var(--primary-text-color) !important;
+}
+
+.mermaid .edgeLabel {
+    background-color: var(--surface-color) !important;
+    color: var(--primary-text-color) !important;
+}
+
+.mermaid .cluster rect {
+    fill: var(--glass-bg-color) !important;
+    stroke: var(--glass-border-color) !important;
+}
+
+.mermaid .cluster text {
+    fill: var(--primary-text-color) !important;
+    font-weight: bold;
+}
+
+.mermaid .node rect,
+.mermaid .node circle,
+.mermaid .node ellipse,
+.mermaid .node polygon,
+.mermaid .node path {
+    fill: var(--accent-color) !important;
+    stroke: var(--secondary-text-color) !important;
+    stroke-width: 2px !important;
+}
+
+.mermaid .edgePath .path {
+    stroke: var(--secondary-text-color) !important;
+}
+
+.mermaid .arrowheadPath {
+    fill: var(--secondary-text-color) !important;
 }
 
 /* --- Responsive Design --- */
@@ -322,5 +360,97 @@ footer p {
     nav ul {
         gap: 20px;
     }
+}
+
+/* --- Idle Animations --- */
+
+/* Keyframes for the floating effect */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Applying the floating animation to cards and steps */
+.skill-card, .step {
+    animation: float 6s infinite ease-in-out;
+}
+
+/* Staggering the animation for a more natural effect */
+.skill-card:nth-child(2), .step:nth-child(2) {
+    animation-delay: 2s;
+}
+.skill-card:nth-child(3), .step:nth-child(3) {
+    animation-delay: 4s;
+}
+
+/* Keyframes for the background particles */
+@keyframes rise {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+
+/* Container for the particles */
+.particle-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1; /* Place it behind all other content */
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    bottom: -20px; /* Start from below the screen */
+    background-color: var(--glow-color);
+    border-radius: 50%;
+    animation: rise 20s infinite linear;
+    opacity: 0;
+}
+
+/* Creating variety in particles */
+.particle:nth-child(1) {
+    width: 5px; height: 5px; left: 10%; animation-duration: 25s; animation-delay: 1s;
+}
+.particle:nth-child(2) {
+    width: 7px; height: 7px; left: 20%; animation-duration: 15s; animation-delay: 3s;
+}
+.particle:nth-child(3) {
+    width: 4px; height: 4px; left: 30%; animation-duration: 30s; animation-delay: 5s;
+}
+.particle:nth-child(4) {
+    width: 6px; height: 6px; left: 40%; animation-duration: 18s; animation-delay: 2s;
+}
+.particle:nth-child(5) {
+    width: 5px; height: 5px; left: 50%; animation-duration: 22s; animation-delay: 7s;
+}
+.particle:nth-child(6) {
+    width: 8px; height: 8px; left: 60%; animation-duration: 14s; animation-delay: 4s;
+}
+.particle:nth-child(7) {
+    width: 4px; height: 4px; left: 70%; animation-duration: 28s; animation-delay: 0s;
+}
+.particle:nth-child(8) {
+    width: 6px; height: 6px; left: 80%; animation-duration: 16s; animation-delay: 6s;
+}
+.particle:nth-child(9) {
+    width: 5px; height: 5px; left: 90%; animation-duration: 24s; animation-delay: 8s;
+}
+.particle:nth-child(10) {
+    width: 7px; height: 7px; left: 95%; animation-duration: 19s; animation-delay: 1s;
 }
 
