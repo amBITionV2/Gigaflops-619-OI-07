@@ -1,14 +1,15 @@
 /* --- Global Styles & Fonts --- */
-/* This section sets the foundational look for the entire site with the new color palette. */
+/* This section sets the foundational look for the entire site with the new "Misty Forest" palette. */
 :root {
-    --background-color: #11120D; /* Smoky Black */
-    --surface-color: #2a2b24;   /* A slightly lighter shade for surfaces */
-    --primary-text-color: #FFFBF4; /* Floral White */
-    --secondary-text-color: #D8CFBC; /* Bone */
-    --accent-color: #565449;      /* Olive Drab */
-    --border-color: #3a3932;
-    --glass-border-color: rgba(216, 207, 188, 0.15); /* Translucent Bone for borders */
-    --glass-bg-color: rgba(42, 43, 36, 0.5); /* Translucent surface color */
+    --background-color: #041416;      /* Near Black */
+    --surface-color: #0b3238;       /* Dark Teal */
+    --primary-text-color: #cde2eb;  /* Powder Blue */
+    --secondary-text-color: #6f99a5; /* Dusky Blue-Grey */
+    --accent-color: #2c5d66;          /* Deep Teal */
+    --border-color: #1a4a52;          /* Darker Teal */
+    --glass-border-color: rgba(111, 153, 165, 0.2); /* Translucent Dusky Blue */
+    --glass-bg-color: rgba(11, 50, 56, 0.5);   /* Translucent Dark Teal */
+    --glow-color: rgba(205, 226, 235, 0.1);   /* Subtle Powder Blue glow */
 }
 
 * {
@@ -20,9 +21,9 @@
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--background-color);
-    /* Added a subtle gradient to make the glass effect more noticeable */
-    background-image: radial-gradient(circle at top left, var(--accent-color), transparent 30%),
-                      radial-gradient(circle at bottom right, var(--surface-color), transparent 40%);
+    /* New angled linear gradient for a smoother background */
+    background-image: linear-gradient(135deg, rgba(44, 93, 102, 0.25) 0%, transparent 50%, rgba(11, 50, 56, 0.35) 100%);
+    background-attachment: fixed;
     color: var(--primary-text-color);
     line-height: 1.6;
 }
@@ -40,11 +41,11 @@ main, section {
 
 /* --- Navigation (Glassmorphism) --- */
 nav {
-    background-color: rgba(17, 18, 13, 0.6); /* Slightly more transparent */
+    background-color: rgba(4, 20, 22, 0.6);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--glass-border-color); /* Glassy border */
-    padding: 15px 0;
+    border-bottom: 1px solid var(--glass-border-color);
+    padding: 0px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -56,11 +57,19 @@ nav .container {
     align-items: center;
 }
 
+/* Updated styles for the image logo */
 nav .logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary-text-color);
-    text-decoration: none;
+    display: block; /* Ensures proper layout for the link */
+    transition: transform 0.3s ease;
+}
+
+nav .logo:hover {
+    transform: scale(1.05); /* Slight zoom on logo hover */
+}
+
+nav .logo img {
+    height: 150px; /* Controls the height of the logo */
+    vertical-align: middle; /* Aligns image vertically with nav links */
 }
 
 nav ul {
@@ -74,12 +83,13 @@ nav ul li a {
     text-decoration: none;
     font-size: 1rem;
     font-weight: 500;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease; /* Added transform to transition */
 }
 
 nav ul li a:hover,
 nav ul li a.active {
     color: var(--primary-text-color);
+    transform: translateY(-2px); /* Subtle lift on hover */
 }
 
 /* --- Typography --- */
@@ -126,21 +136,26 @@ p {
 .cta-button,
 form button {
     display: inline-block;
-    background-color: var(--accent-color);
     color: var(--primary-text-color);
     padding: 12px 25px;
     border-radius: 8px;
     text-decoration: none;
     font-size: 1rem;
     font-weight: 600;
-    border: 1px solid rgba(255, 251, 244, 0.2);
+    border: 1px solid var(--glass-border-color);
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    /* Animated Gradient Background */
+    background: linear-gradient(135deg, var(--accent-color), var(--secondary-text-color));
+    background-size: 200% 200%;
+    transition: background-position 0.5s ease, transform 0.2s ease;
 }
 
 .cta-button:hover,
 form button:hover {
-    background-color: #6a685c;
+    background-position: 100% 100%; /* Shift gradient on hover */
+    transform: scale(1.05); /* Slightly enlarge button */
 }
 
 .form-group {
@@ -157,14 +172,21 @@ label {
 select, textarea {
     width: 100%;
     padding: 12px;
-    background-color: var(--glass-bg-color); /* Glassy background */
+    background-color: var(--glass-bg-color);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    border: 1px solid var(--glass-border-color); /* Glassy border */
+    border: 1px solid var(--glass-border-color);
     border-radius: 8px;
     color: var(--primary-text-color);
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 15px var(--glow-color); /* Add glow on focus */
 }
 
 /* --- Cards & Grids (Glassmorphism) --- */
@@ -176,12 +198,21 @@ select, textarea {
 }
 
 .step, .skill-card {
-    background-color: var(--glass-bg-color); /* Glassy background */
+    background-color: var(--glass-bg-color);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     padding: 30px;
     border-radius: 12px;
-    border: 1px solid var(--glass-border-color); /* Glassy border */
+    border: 1px solid var(--glass-border-color);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    /* Added transition for hover effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.step:hover, .skill-card:hover {
+    transform: translateY(-8px); /* Lift the card */
+    box-shadow: 0 8px 30px var(--glow-color); /* Add a subtle glow */
+    background-color: rgba(11, 50, 56, 0.7); /* Slightly lighten on hover */
 }
 
 .skill-card ul {
@@ -220,10 +251,10 @@ footer p {
 /* --- Roadmap Output Styles (Glassmorphism) --- */
 #roadmap-output {
     margin-top: 40px;
-    background-color: var(--glass-bg-color); /* Glassy background */
+    background-color: var(--glass-bg-color);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid var(--glass-border-color); /* Glassy border */
+    border: 1px solid var(--glass-border-color);
     border-radius: 12px;
     padding: 30px;
     display: none;
