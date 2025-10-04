@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skill Hub - AscendEd</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <!-- Navigation Bar -->
     <nav>
-        <div>
-            <a href="index.html">AscendEd</a>
+        <div class="container">
+            <a href="index.html" class="logo">AscendEd</a>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="roadmap.html">Roadmap Generator</a></li>
-                <li><a href="skills.html">Skill Hub</a></li>
+                <li><a href="skills.html" class="active">Skill Hub</a></li>
                 <li><a href="careers.html">Career Paths</a></li>
             </ul>
         </div>
@@ -23,18 +26,18 @@
 
     <!-- Main Content: Skill Hub -->
     <main>
-        <div>
-            <h1>Skill Hub</h1>
-            <p>Explore essential skills for top tech domains. Each roadmap is structured from foundational concepts to advanced mastery.</p>
-        </div>
+        <div class="container">
+            <div style="text-align: center;">
+                <h1>Skill Hub</h1>
+                <p>Explore essential skills for top tech domains. Each roadmap is structured from foundational concepts to advanced mastery.</p>
+            </div>
 
-        <!-- Skills Grid -->
-        <div>
-            
-            <!-- Web Development Card -->
-            <div>
-                <h2>Web Development</h2>
-                <div>
+            <!-- Skills Grid -->
+            <div class="skills-grid">
+                
+                <!-- Web Development Card -->
+                <div class="skill-card">
+                    <h2>Web Development</h2>
                     <div>
                         <h3>Foundations</h3>
                         <ul>
@@ -48,7 +51,7 @@
                         <ul>
                             <li>Git & GitHub: Version control.</li>
                             <li>Front-End Framework: React, Vue, or Angular.</li>
-                            <li>Back-End & Databases: Node.js (Express) or Python (Django), with SQL/NoSQL.</li>
+                            <li>Back-End & Databases: Node.js, Python, SQL/NoSQL.</li>
                         </ul>
                     </div>
                     <div>
@@ -60,12 +63,10 @@
                         </ul>
                     </div>
                 </div>
-            </div>
 
-            <!-- AI / Machine Learning Card -->
-            <div>
-                <h2>AI / Machine Learning</h2>
-                <div>
+                <!-- AI / Machine Learning Card -->
+                <div class="skill-card">
+                    <h2>AI / Machine Learning</h2>
                     <div>
                         <h3>Foundations</h3>
                         <ul>
@@ -91,12 +92,10 @@
                         </ul>
                     </div>
                 </div>
-            </div>
 
-            <!-- Cloud Computing Card -->
-            <div>
-                <h2>Cloud Computing</h2>
-                <div>
+                <!-- Cloud Computing Card -->
+                <div class="skill-card">
+                    <h2>Cloud Computing</h2>
                     <div>
                         <h3>Foundations</h3>
                         <ul>
@@ -122,18 +121,16 @@
                         </ul>
                     </div>
                 </div>
-            </div>
 
-            <!-- Cyber Security Card -->
-            <div>
-                <h2>Cyber Security</h2>
-                <div>
+                <!-- Cyber Security Card -->
+                <div class="skill-card">
+                    <h2>Cyber Security</h2>
                     <div>
                         <h3>Foundations</h3>
                         <ul>
                             <li>Networking: OSI Model, TCP/IP, DNS.</li>
                             <li>Systems Admin: Windows & Linux management.</li>
-                            <li>Security Concepts: CIA Triad (Confidentiality, Integrity, Availability).</li>
+                            <li>Security Concepts: CIA Triad.</li>
                         </ul>
                     </div>
                     <div>
@@ -159,7 +156,7 @@
 
     <!-- Footer -->
     <footer>
-        <div>
+        <div class="container">
             <p>&copy; 2025 AscendEd. All Rights Reserved.</p>
         </div>
     </footer>

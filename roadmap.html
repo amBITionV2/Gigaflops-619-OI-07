@@ -1,88 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roadmap Generator - AscendEd</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Navigation Bar -->
     <nav>
-        <div>
-            <a href="index.html">AscendEd</a>
+        <div class="container">
+            <a href="index.html" class="logo">AscendEd</a>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="roadmap.html">Roadmap Generator</a></li>
+                <li><a href="roadmap.html" class="active">Roadmap Generator</a></li>
                 <li><a href="skills.html">Skill Hub</a></li>
                 <li><a href="careers.html">Career Paths</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Main Content: Roadmap Generator Form -->
     <main>
-        <div>
-            <h1>Create Your Personalized Roadmap</h1>
-            <p>Fill in your details below to generate a custom career and skill roadmap for your engineering journey.</p>
+        <div class="container">
+            <div class="form-header" style="text-align: center; max-width: 600px; margin: 0 auto 40px auto;">
+                <h1>Create Your Personalized Roadmap</h1>
+                <p>Fill in your details below to generate a custom career and skill roadmap for your engineering journey.</p>
+            </div>
+
+            <form style="max-width: 600px; margin: 0 auto;">
+                <div class="form-group">
+                    <label for="semester">Current Semester:</label>
+                    <select name="semester" id="semester">
+                        <option value="1">Semester 1</option>
+                        <option value="2">Semester 2</option>
+                        <option value="3">Semester 3</option>
+                        <option value="4">Semester 4</option>
+                        <option value="5">Semester 5</option>
+                        <option value="6">Semester 6</option>
+                        <option value="7">Semester 7</option>
+                        <option value="8">Semester 8</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="branch">Engineering Branch:</label>
+                    <select name="branch" id="branch">
+                        <option value="cse">Computer Science & Engineering</option>
+                        <option value="ece">Electronics & Communication Engineering</option>
+                        <option value="eee">Electrical & Electronics Engineering</option>
+                        <option value="me">Mechanical Engineering</option>
+                        <option value="ce">Civil Engineering</option>
+                        <option value="che">Chemical Engineering</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="skills">Your Skills (comma-separated):</label>
+                    <textarea id="skills" name="skills" rows="4" placeholder="e.g., Python, C++, Web Development, Public Speaking"></textarea>
+                </div>
+
+                <div class="form-group" style="text-align: center;">
+                    <button type="submit">Generate Roadmap</button>
+                </div>
+            </form>
+
+            <!-- This is the crucial placeholder where the generated roadmap will appear -->
+            <div id="roadmap-output"></div>
+
         </div>
-
-        <form>
-            <!-- Semester Selection -->
-            <div>
-                <label for="semester">Current Semester:</label>
-                <select name="semester" id="semester">
-                    <option value="1">Semester 1</option>
-                    <option value="2">Semester 2</option>
-                    <option value="3">Semester 3</option>
-                    <option value="4">Semester 4</option>
-                    <option value="5">Semester 5</option>
-                    <option value="6">Semester 6</option>
-                    <option value="7">Semester 7</option>
-                    <option value="8">Semester 8</option>
-                </select>
-            </div>
-            
-            <br>
-
-            <!-- Branch Selection -->
-            <div>
-                <label for="branch">Engineering Branch:</label>
-                <select name="branch" id="branch">
-                    <option value="cse">Computer Science & Engineering</option>
-                    <option value="ece">Electronics & Communication Engineering</option>
-                    <option value="eee">Electrical & Electronics Engineering</option>
-                    <option value="me">Mechanical Engineering</option>
-                    <option value="ce">Civil Engineering</option>
-                    <option value="che">Chemical Engineering</option>
-                </select>
-            </div>
-
-            <br>
-
-            <!-- Skills Input -->
-            <div>
-                <label for="skills">Your Skills (comma-separated):</label>
-                <br>
-                <textarea id="skills" name="skills" rows="4" cols="50" placeholder="e.g., Python, C++, Web Development, Public Speaking"></textarea>
-            </div>
-
-            <br>
-
-            <!-- Submit Button -->
-            <div>
-                <button type="submit">Generate Roadmap</button>
-            </div>
-        </form>
     </main>
 
-    <!-- Footer -->
     <footer>
-        <div>
+        <div class="container">
             <p>&copy; 2025 AscendEd. All Rights Reserved.</p>
         </div>
     </footer>
 
+    <!-- This links your JavaScript file, making the page interactive -->
+    <script src="script.js"></script>
 </body>
 </html>
+
