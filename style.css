@@ -9,7 +9,8 @@
     --border-color: #1a4a52;          /* Darker Teal */
     --glass-border-color: rgba(111, 153, 165, 0.2); /* Translucent Dusky Blue */
     --glass-bg-color: rgba(11, 50, 56, 0.5);   /* Translucent Dark Teal */
-    --glow-color: rgba(205, 226, 235, 0.1);   /* Subtle Powder Blue glow */
+    --glow-color: rgba(205, 226, 235, 0.15);  /* Subtle Powder Blue glow (Slightly enhanced) */
+    --text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Text shadow for legibility */
 }
 
 * {
@@ -19,9 +20,8 @@
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'PT Sans Narrow', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--background-color);
-    /* New angled linear gradient for a smoother background */
     background-image: linear-gradient(135deg, rgba(44, 93, 102, 0.25) 0%, transparent 50%, rgba(11, 50, 56, 0.35) 100%);
     background-attachment: fixed;
     color: var(--primary-text-color);
@@ -36,9 +36,20 @@ body {
     padding: 0 20px;
 }
 
-main, section {
-    padding: 40px 0; /* Reduced vertical padding from 60px to 40px */
+/* Applying global entry animation to all main content sections */
+main, .hero, .how-it-works {
+    animation: fade-in-zoom 1s ease-out forwards;
+    opacity: 0;
 }
+
+.how-it-works {
+    animation-delay: 0.2s; /* Stagger the animation for the second section on the homepage */
+}
+
+main, section {
+    padding: 40px 0;
+}
+
 
 /* --- Navigation (Glassmorphism) --- */
 nav {
@@ -46,7 +57,7 @@ nav {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--glass-border-color);
-    padding: 10px 0; /* Adjusted padding for a larger logo */
+    padding: 10px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -58,7 +69,6 @@ nav .container {
     align-items: center;
 }
 
-/* Updated styles for the image logo */
 nav .logo {
     display: block;
     transition: transform 0.3s ease;
@@ -69,7 +79,7 @@ nav .logo:hover {
 }
 
 nav .logo img {
-    height: 90px; /* Increased logo height */
+    height: 90px;
     vertical-align: middle;
 }
 
@@ -82,15 +92,16 @@ nav ul {
 nav ul li a {
     color: var(--secondary-text-color);
     text-decoration: none;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: color 0.3s ease, transform 0.3s ease;
+    font-size: 1.1rem; /* Slightly increased for the new font */
+    font-weight: 700; /* PT Sans Narrow looks better bold */
+    transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
 }
 
 nav ul li a:hover,
 nav ul li a.active {
     color: var(--primary-text-color);
     transform: translateY(-2px);
+    text-shadow: 0 0 5px var(--glow-color);
 }
 
 /* --- Typography --- */
@@ -100,15 +111,24 @@ h1, h2, h3 {
     font-weight: 700;
 }
 
+/* Applying global animated gradient to all H1 tags */
 h1 {
-    font-size: 3rem;
-    color: var(--primary-text-color);
+    font-size: 3.2rem;
+    text-shadow: var(--text-shadow);
+    background: linear-gradient(90deg, var(--primary-text-color), var(--secondary-text-color), var(--primary-text-color));
+    background-size: 200% auto;
+    color: #000;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 8s linear infinite;
 }
 
 h2 {
     font-size: 2.2rem;
     text-align: center;
     margin-bottom: 40px;
+    text-shadow: var(--text-shadow);
 }
 
 h3 {
@@ -125,13 +145,16 @@ p {
 .hero {
     text-align: center;
     padding: 80px 0;
+    overflow: hidden; /* Important for entry animations */
 }
 
+/* Removed specific hero animations as they are now global */
 .hero p {
     font-size: 1.2rem;
     max-width: 600px;
     margin: 0 auto 30px auto;
 }
+
 
 /* --- Buttons & Forms --- */
 .cta-button,
@@ -142,20 +165,21 @@ form button {
     border-radius: 8px;
     text-decoration: none;
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 700;
     border: 1px solid var(--glass-border-color);
     cursor: pointer;
     position: relative;
     overflow: hidden;
     background: linear-gradient(135deg, var(--accent-color), var(--secondary-text-color));
     background-size: 200% 200%;
-    transition: background-position 0.5s ease, transform 0.2s ease;
+    transition: background-position 0.5s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .cta-button:hover,
 form button:hover {
     background-position: 100% 100%;
     transform: scale(1.05);
+    box-shadow: 0 0 20px var(--glow-color);
 }
 
 .form-group {
@@ -165,7 +189,7 @@ form button:hover {
 label {
     display: block;
     margin-bottom: 8px;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--secondary-text-color);
 }
 
@@ -178,7 +202,7 @@ select, textarea {
     border: 1px solid var(--glass-border-color);
     border-radius: 8px;
     color: var(--primary-text-color);
-    font-family: 'Inter', sans-serif;
+    font-family: 'PT Sans Narrow', sans-serif;
     font-size: 1rem;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -210,7 +234,7 @@ select:focus, textarea:focus {
 
 .step:hover, .skill-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 8px 30px var(--glow-color);
+    box-shadow: 0 8px 35px var(--glow-color);
     background-color: rgba(11, 50, 56, 0.7);
 }
 
@@ -306,7 +330,7 @@ footer p {
 
 .mermaid text {
     fill: var(--primary-text-color) !important;
-    font-family: 'Inter', sans-serif !important;
+    font-family: 'PT Sans Narrow', sans-serif !important;
 }
 
 .mermaid .label {
@@ -362,21 +386,17 @@ footer p {
     }
 }
 
-/* --- Idle Animations --- */
-
-/* Keyframes for the floating effect */
+/* --- Idle & Hero Animations --- */
 @keyframes float {
   0% { transform: translateY(0px); }
   50% { transform: translateY(-8px); }
   100% { transform: translateY(0px); }
 }
 
-/* Applying the floating animation to cards and steps */
 .skill-card, .step {
     animation: float 6s infinite ease-in-out;
 }
 
-/* Staggering the animation for a more natural effect */
 .skill-card:nth-child(2), .step:nth-child(2) {
     animation-delay: 2s;
 }
@@ -384,17 +404,16 @@ footer p {
     animation-delay: 4s;
 }
 
-/* Keyframes for the background particles */
 @keyframes rise {
     0% {
         transform: translateY(0);
         opacity: 0;
     }
     10% {
-        opacity: 1;
+        opacity: 0.7;
     }
     90% {
-        opacity: 1;
+        opacity: 0.7;
     }
     100% {
         transform: translateY(-100vh);
@@ -402,20 +421,19 @@ footer p {
     }
 }
 
-/* Container for the particles */
 .particle-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    z-index: -1; /* Place it behind all other content */
+    z-index: -1;
     overflow: hidden;
 }
 
 .particle {
     position: absolute;
-    bottom: -20px; /* Start from below the screen */
+    bottom: -20px;
     background-color: var(--glow-color);
     border-radius: 50%;
     animation: rise 20s infinite linear;
@@ -423,34 +441,32 @@ footer p {
 }
 
 /* Creating variety in particles */
-.particle:nth-child(1) {
-    width: 5px; height: 5px; left: 10%; animation-duration: 25s; animation-delay: 1s;
+.particle:nth-child(1) { width: 5px; height: 5px; left: 10%; animation-duration: 25s; animation-delay: 1s; }
+.particle:nth-child(2) { width: 7px; height: 7px; left: 20%; animation-duration: 15s; animation-delay: 3s; }
+.particle:nth-child(3) { width: 4px; height: 4px; left: 30%; animation-duration: 30s; animation-delay: 5s; }
+.particle:nth-child(4) { width: 6px; height: 6px; left: 40%; animation-duration: 18s; animation-delay: 2s; }
+.particle:nth-child(5) { width: 5px; height: 5px; left: 50%; animation-duration: 22s; animation-delay: 7s; }
+.particle:nth-child(6) { width: 8px; height: 8px; left: 60%; animation-duration: 14s; animation-delay: 4s; }
+.particle:nth-child(7) { width: 4px; height: 4px; left: 70%; animation-duration: 28s; animation-delay: 0s; }
+.particle:nth-child(8) { width: 6px; height: 6px; left: 80%; animation-duration: 16s; animation-delay: 6s; }
+.particle:nth-child(9) { width: 5px; height: 5px; left: 90%; animation-duration: 24s; animation-delay: 8s; }
+.particle:nth-child(10) { width: 7px; height: 7px; left: 95%; animation-duration: 19s; animation-delay: 1s; }
+
+/* Global Animations */
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
 }
-.particle:nth-child(2) {
-    width: 7px; height: 7px; left: 20%; animation-duration: 15s; animation-delay: 3s;
-}
-.particle:nth-child(3) {
-    width: 4px; height: 4px; left: 30%; animation-duration: 30s; animation-delay: 5s;
-}
-.particle:nth-child(4) {
-    width: 6px; height: 6px; left: 40%; animation-duration: 18s; animation-delay: 2s;
-}
-.particle:nth-child(5) {
-    width: 5px; height: 5px; left: 50%; animation-duration: 22s; animation-delay: 7s;
-}
-.particle:nth-child(6) {
-    width: 8px; height: 8px; left: 60%; animation-duration: 14s; animation-delay: 4s;
-}
-.particle:nth-child(7) {
-    width: 4px; height: 4px; left: 70%; animation-duration: 28s; animation-delay: 0s;
-}
-.particle:nth-child(8) {
-    width: 6px; height: 6px; left: 80%; animation-duration: 16s; animation-delay: 6s;
-}
-.particle:nth-child(9) {
-    width: 5px; height: 5px; left: 90%; animation-duration: 24s; animation-delay: 8s;
-}
-.particle:nth-child(10) {
-    width: 7px; height: 7px; left: 95%; animation-duration: 19s; animation-delay: 1s;
+
+@keyframes fade-in-zoom {
+    from {
+        transform: scale(0.95); /* More subtle zoom */
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
